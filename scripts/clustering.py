@@ -47,6 +47,7 @@ def get_cluster_keywords(cluster_labels: "np.ndarray", tok_k, in_json_file):
     for cluster_id in doc_id_cluster_dict:
         for doc_id in doc_id_cluster_dict[cluster_id]:
             doc_title_cluster_dict[cluster_id].append(json_obj[doc_id].get("title", DEFAULT_TITLE))
+    print("Cluster", "Count", "Keywords", sep="\t")
     for cluster_id in doc_title_cluster_dict:
         print(cluster_id, len(doc_title_cluster_dict[cluster_id]),
               select_keyword_by_freq(doc_title_cluster_dict[cluster_id], tok_k), sep="\t")
