@@ -54,3 +54,8 @@ Cluster Count   Keywords
 3       3851    ['COVID-19:', 'health', 'respiratory', 'COVID‐19', 'review', 'COVID', 'cells', 'human', 'using', 'Respiratory']
 2       475     ['Clinical', 'COVID‐19', 'respiratory', 'health', 'cells', 'care', 'Viral', 'COVID', 'cancer', 'related']
 ```
+
+### Clustering for finding topic keywords with abstract
+- K-means clustering on the doc2vec embeddings of a set of articles
+- 25k abstracts extracted out of 104k articles with a strict string matching method
+- Top N frequent words from the article abstracts of each cluster of as the topic keywords of this cluster
