@@ -59,3 +59,29 @@ Cluster Count   Keywords
 - K-means clustering on the doc2vec embeddings of a set of articles
 - 25k abstracts extracted out of 104k articles with a strict string matching method
 - Top N frequent words from the article abstracts of each cluster of as the topic keywords of this cluster
+
+#### sample_size=15k, clusters=5, keywords=10, field=abstract
+```
+Cluster Count   Keywords
+0       14602   ['cells', 'cell', 'University', 'using', 'blood', 'also', 'may', 'treatment', 'expression', 'group']
+1       2775    ['cells', 'University', 'bone', 'using', 'cell', 'also', 'Medicine,', 'expression', 'increased', 'may']
+4       6026    ['cells', 'University', 'cell', 'using', 'treatment', 'Medicine,', 'bone', 'group', 'compared', 'may']
+2       3023    ['University', 'cells', 'using', 'blood', 'cell', 'treatment', 'clinical', 'Medicine,', 'also', 'group']
+3       182     ['language', 'preprint', 'online', 'using', 'anxiety', 'may', 'Abstract', 'immunity', 'viral', '2020']
+```
+<img src="imgs/scatter_abs_abs.png"  width="50%" height="50%">
+
+---
+
+#### sample_size=15k, clusters=5, keywords=10, field=title
+```
+Cluster Count   Keywords
+0       14602   ['respiratory', 'review', 'human', 'COVID-19:', 'using', 'health', 'COVID‐19', 'among', 'clinical', 'novel']
+1       2775    ['respiratory', 'health', 'COVID-19:', 'review', 'cells', 'using', 'human', 'care', 'acute', 'RNA']
+4       6026    ['respiratory', 'COVID-19:', 'review', 'health', 'using', 'human', 'clinical', 'novel', 'viral', 'case']
+2       3023    ['respiratory', 'using', 'health', 'review', 'human', 'COVID-19:', 'viral', 'clinical', 'cells', 'model']
+3       182     ['health', 'potential', 'care', 'response', 'COVID‐19', 'Novel', 'feline', 'detection', 'human', 'role']
+```
+<img src="imgs/scatter_title_abs.png"  width="50%" height="50%">
+
+---

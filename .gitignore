@@ -2,6 +2,7 @@
 xdd-covid-19-8Dec-doc2vec/
 xdd-covid-19-8Dec-doc2vec_text/
 .idea/
+.DS_Store
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

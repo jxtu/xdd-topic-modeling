@@ -37,7 +37,7 @@ def select_keyword_by_freq(title_list: List[str], top_k: int):
     return [w[0] for w in word_counter.most_common(top_k)]
 
 
-def get_cluster_keywords(cluster_labels: "np.ndarray", tok_k, in_json_file):
+def get_cluster_keywords(cluster_labels: "np.ndarray", tok_k: int, in_json_file, field: str):
     json_obj = json.load(open(in_json_file, "r", encoding="utf-8"))
     doc_id_cluster_dict = defaultdict(list)
     for doc_id, cluster_label in enumerate(cluster_labels):
@@ -46,7 +46,7 @@ def get_cluster_keywords(cluster_labels: "np.ndarray", tok_k, in_json_file):
     doc_title_cluster_dict = defaultdict(list)
     for cluster_id in doc_id_cluster_dict:
         for doc_id in doc_id_cluster_dict[cluster_id]:
-            doc_title_cluster_dict[cluster_id].append(json_obj[doc_id].get("title", DEFAULT_TITLE))
+            doc_title_cluster_dict[cluster_id].append(json_obj[doc_id].get(field, DEFAULT_TITLE))
     print("Cluster", "Count", "Keywords", sep="\t")
     for cluster_id in doc_title_cluster_dict:
         print(cluster_id, len(doc_title_cluster_dict[cluster_id]),
@@ -54,18 +54,19 @@ def get_cluster_keywords(cluster_labels: "np.ndarray", tok_k, in_json_file):
 
 
 @click.command()
-@click.argument("sample_size", type=click.INT)
+@click.argument("file_prefix", type=click.STRING)
 @click.argument("n_cluster", type=click.INT)
 @click.argument("top_k", type=click.INT)
-def main(sample_size: int, n_cluster: int, top_k: int):
-    npy_file_path = f"xdd-covid-19-8Dec-doc2vec/top_{sample_size}_model_streamed_doc2vec.docvecs.vectors_docs.npy"
-    json_file_path = f"xdd-covid-19-8Dec-doc2vec/top_{sample_size}_xdd-covid-19-8Dec.bibjson"
+@click.argument("field", type=click.STRING)
+def main(file_prefix: int, n_cluster: int, top_k: int, field):
+    npy_file_path = f"xdd-covid-19-8Dec-doc2vec/{file_prefix}_model_streamed_doc2vec.docvecs.vectors_docs.npy"
+    json_file_path = f"xdd-covid-19-8Dec-doc2vec/{file_prefix}_xdd-covid-19-8Dec.bibjson"
     array = load_d2v(npy_file_path)
     labels = kmeans_cluster(array, n_cluster)
-    scatter_viz(array, labels, f"scatter_{sample_size}", use_tne=False)
-    get_cluster_keywords(labels, top_k, json_file_path)
+    scatter_viz(array, labels, f"scatter_{field}_{file_prefix}", use_tne=False)
+    get_cluster_keywords(labels, top_k, json_file_path, field)
 
 
 if __name__ == '__main__':
-    # python -m scripts.clustering 1000 5 5
+    # python -m scripts.clustering top_1000 5 5 title
     main()
