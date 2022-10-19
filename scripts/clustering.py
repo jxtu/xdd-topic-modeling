@@ -1,6 +1,7 @@
 import json
 from collections import Counter, defaultdict
 from typing import List
+from math import log2
 
 import click
 import numpy as np
@@ -37,6 +38,40 @@ def select_keyword_by_freq(title_list: List[str], top_k: int):
     return [w[0] for w in word_counter.most_common(top_k)]
 
 
+def idf(N: int, df: int) -> float:
+    """compute the idf score, given df and document count N"""
+    return log2(N / df)
+
+
+def tf(freq: int) -> float:
+    """compute tf score, given the term count freq in a document"""
+    return 1.0 + log2(freq)
+
+
+def select_keyword_by_tfidf(doc_list: List[str], top_k: int):
+    index_dict = defaultdict(int)
+    N = len(doc_list)
+    for doc in doc_list:
+        words = set(tok for tok in doc.strip().split() if tok.lower() not in STOPWORDS and len(tok) > 2)
+        for word in words:
+            index_dict[word] += 1
+
+    word_counter = Counter()
+
+    for doc in doc_list:
+        words = [tok for tok in doc.strip().split() if tok.lower() not in STOPWORDS and len(tok) > 2]
+        terms_counter = Counter(words)
+        term_weights = {}
+        for term in terms_counter:
+            term_tf = tf(terms_counter[term])
+            term_idf = idf(N, index_dict[term])
+            term_weights[term] = term_tf * term_idf
+        sorted_term_weights = sorted(term_weights.items(), key=lambda k: k[1], reverse=True)
+        topk_words = [k for k, v in sorted_term_weights[:top_k]]
+        word_counter.update(topk_words)
+    return [w[0] for w in word_counter.most_common(top_k)]
+
+
 def get_cluster_keywords(cluster_labels: "np.ndarray", tok_k: int, in_json_file, field: str):
     json_obj = json.load(open(in_json_file, "r", encoding="utf-8"))
     doc_id_cluster_dict = defaultdict(list)
@@ -50,14 +85,14 @@ def get_cluster_keywords(cluster_labels: "np.ndarray", tok_k: int, in_json_file,
     print("Cluster", "Count", "Keywords", sep="\t")
     for cluster_id in doc_title_cluster_dict:
         print(cluster_id, len(doc_title_cluster_dict[cluster_id]),
-              select_keyword_by_freq(doc_title_cluster_dict[cluster_id], tok_k), sep="\t")
+              select_keyword_by_tfidf(doc_title_cluster_dict[cluster_id], tok_k), sep="\t")
 
 
 @click.command()
 @click.argument("file_prefix", type=click.STRING)
 @click.argument("n_cluster", type=click.INT)
 @click.argument("top_k", type=click.INT)
-@click.argument("field", type=click.STRING)
+@click.option('--field', type=click.Choice(['abs', 'title'], case_sensitive=True))
 def main(file_prefix: int, n_cluster: int, top_k: int, field):
     npy_file_path = f"xdd-covid-19-8Dec-doc2vec/{file_prefix}_model_streamed_doc2vec.docvecs.vectors_docs.npy"
     json_file_path = f"xdd-covid-19-8Dec-doc2vec/{file_prefix}_xdd-covid-19-8Dec.bibjson"
@@ -68,5 +103,5 @@ def main(file_prefix: int, n_cluster: int, top_k: int, field):
 
 
 if __name__ == '__main__':
-    # python -m scripts.clustering top_1000 5 5 title
+    # python -m scripts.clustering top_1000 5 5 --field title
     main()
