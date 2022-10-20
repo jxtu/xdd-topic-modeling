@@ -85,3 +85,35 @@ Cluster Count   Keywords
 <img src="imgs/scatter_title_abs.png"  width="50%" height="50%">
 
 ---
+### Abstracts from Science Parser
+#### sample_size=50k, clusters=10, keywords=10, field=abstract
+Keywords from frequency
+```
+Cluster Count   Keywords
+9       3183    ['health', 'also', 'may', 'viral', 'respiratory', 'clinical', 'used', 'risk', '2020', 'data']
+1       15044   ['health', 'also', 'may', 'viral', 'respiratory', 'clinical', 'using', 'University', 'used', 'data']
+6       4384    ['also', 'health', 'may', 'respiratory', 'viral', 'clinical', 'used', 'using', 'data', 'human']
+4       6902    ['health', 'also', 'may', 'viral', 'clinical', 'respiratory', 'risk', 'data', '2020', 'using']
+5       3716    ['health', 'also', 'may', 'viral', 'respiratory', 'data', 'using', 'clinical', 'University', 'used']
+3       4147    ['health', 'also', 'may', 'clinical', 'viral', 'respiratory', '2020', 'used', 'data', 'cases']
+2       3963    ['health', 'may', 'also', 'respiratory', 'viral', 'clinical', 'University', 'risk', 'data', 'using']
+0       3919    ['also', 'health', 'may', 'clinical', 'respiratory', 'viral', 'cells', 'used', 'data', 'risk']
+8       4302    ['health', 'also', 'may', 'viral', 'respiratory', 'clinical', 'human', 'data', 'used', 'using']
+7       440     ['may', 'also', 'viral', 'respiratory', 'clinical', 'research', 'health', 'cases', '2020', 'using']
+```
+
+Keywords from TF-IDF
+```
+Cluster Count   Keywords
+9       3183    ['preprint', 'vaccine', 'des', 'air', 'SARS', 'binding', 'children', 'RNA', 'ACE2', 'mental']
+1       15044   ['preprint', 'influenza', 'ACE2', 'al.,', 'cancer', 'USA', 'children', 'mental', 'SARS', 'vaccine']
+6       4384    ['preprint', 'al.,', 'influenza', 'SARS', 'ACE2', 'vaccine', 'School', 'cancer', 'RNA', 'China']
+4       6902    ['preprint', 'cancer', 'al.,', 'USA', 'influenza', 'ACE2', 'children', 'RNA', 'mental', 'students']
+5       3716    ['influenza', 'preprint', 'MD,', 'viruses', 'Hong', 'women', 'al.,', 'ACE2', 'children', 'compounds']
+3       4147    ['preprint', 'influenza', 'al.,', 'ACE2', 'students', 'mental', 'children', 'MD,', 'SARS-CoV', 'USA']
+2       3963    ['preprint', 'USA', 'al.,', 'MD,', 'influenza', 'University,', 'China', 'vaccine', 'children', 'cancer']
+0       3919    ['preprint', 'al.,', 'USA', 'RNA', 'IgG', 'influenza', 'Medicine,', 'vaccine', 'cancer', 'mental']
+8       4302    ['preprint', 'influenza', 'University,', 'RNA', 'Department', 'al.,', 'Medicine,', 'ACE2', 'DNA', 'USA']
+7       440     ['preprint', 'School', 'influenza', 'al.,', 'proteins', 'children', 'RNA', 'USA', 'DNA', '2020;']
+```
+---
