@@ -117,3 +117,19 @@ Cluster Count   Keywords
 7       440     ['preprint', 'School', 'influenza', 'al.,', 'proteins', 'children', 'RNA', 'USA', 'DNA', '2020;']
 ```
 ---
+
+### Contextualized Topic Modeling
+#### sample_size=50k, topics=10, keywords=10, field=abstract
+```
+Topic   Keywords
+0   ['sars', 'been', 'cov', 'coronavirus', 'may', 'infection', 'disease', 'from', 'al', 'is']
+1   ['destination', 'lens', 'leisure', 'volatility', 'returns', 'explores', 'hotel', 'tourists', 'tourism', 'destinations']
+2   ['world', 'health', 'people', 'they', 'about', 'us', 'many', 'some', 'public', 'it']
+3   ['estimate', 'r0', 'display', 'reproduction', 'medrxiv', 'granted', 'perpetuity', 'model', 'license', 'ppe']
+4   ['monday', 'rep', 'adulthood', 'mrsa', 'ankle', 'bipolar', 'blackwell', 'dj', 'hypersensitivity', 'wednesday']
+5   ['ar', 'docking', 'ang', 'zinc', 'rnas', 'prrsv', 'domain', 'mrna', 'rbd', 'signaling']
+6   ['print', 'dx', 'id', 'issn', 'link', 'homepage', 'cite', 'loi', 'tandfonline', '1111']
+7   ['polymer', 'antibacterial', 'column', 'nanoparticles', 'nano', 'adsorption', 'separation', 'mixtures', 'leaf', 'detergent']
+8   ['ct', 'chest', 'copd', 'calves', 'pneumonia', 'hospitalized', 'nasopharyngeal', 'nasal', 'pcr', 'specimens']
+9   ['ne', 'im', 'du', 'si', 'ce', 'es', 'paris', 'con', 'toronto', 'au']
+```
