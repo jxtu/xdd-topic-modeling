@@ -1,3 +1,57 @@
+# GPT-4 Entity and Relation Extraction from Geological Text
+```
+original text:
+Pyrite content increases with distance from the MBX and SS stocks, and is most abundant in propylitic altered rocks. 
+Pyrite occurs as disseminations, veinlets, large clots, patches, and as replacements of mafic minerals. 
+Gold mineralization in the 66 Zone is associated with 10 to 20% pyrite, with pyrite also forming a minor constituent in the potassic altered rocks. 
+Cross-cutting relationships indicate several generations of pyrite mineralization."
+
+instruction 1: 
+"What are the geological entities from the following text?
+
+output 1:
+1. Pyrite
+2. MBX and SS stocks
+3. Propylitic altered rocks
+4. Mafic minerals
+5. Gold mineralization in the 66 Zone
+6. Potassic altered rocks."
+
+instruction 2:
+What are the geological entities and their types from the following text? Entity type can only be one word.
+
+output 2:
+1. Pyrite - Mineral
+2. MBX - Mine
+3. SS stocks - Mine
+4. propylitic altered rocks - Rock
+5. mafic minerals - Mineral
+6. Gold - Mineral
+7. 66 Zone - Area
+8. potassic altered rocks - Rock
+9. pyrite mineralization - Mineralization
+
+instruction 3:
+Extract the geological entities and relations from the following text. 
+Each relation tuple should be formatted as (entity1, event, entity2)
+
+output 3:
+[('Pyrite content', 'increases with', 'distance from the MBX and SS stocks'),
+ ('Pyrite', 'is most abundant in', 'propylitic altered rocks'),
+ ('Pyrite', 'occurs as', 'disseminations'),
+ ('Pyrite', 'occurs as', 'veinlets'),
+ ('Pyrite', 'occurs as', 'large clots'),
+ ('Pyrite', 'occurs as', 'patches'),
+ ('Pyrite', 'occurs as', 'replacements of mafic minerals'),
+ ('Gold mineralization in the 66 Zone', 'is associated with', '10 to 20% pyrite'),
+ ('Pyrite', 'is a minor constituent in', 'potassic altered rocks'),
+ ('Cross-cutting relationships', 'indicate', 'several generations of pyrite mineralization')]
+
+
+
+```
+
+
 # xdd-topic-modeling
 
 ### Clustering for finding topic keywords
